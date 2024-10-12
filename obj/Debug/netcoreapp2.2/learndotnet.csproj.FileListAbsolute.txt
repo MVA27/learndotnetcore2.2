@@ -1,0 +1,14 @@
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\bin\Debug\netcoreapp2.2\learndotnet.deps.json
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\bin\Debug\netcoreapp2.2\learndotnet.runtimeconfig.json
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\bin\Debug\netcoreapp2.2\learndotnet.runtimeconfig.dev.json
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\bin\Debug\netcoreapp2.2\learndotnet.dll
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\bin\Debug\netcoreapp2.2\learndotnet.pdb
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.csprojAssemblyReference.cache
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.csproj.CoreCompileInputs.cache
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.RazorAssemblyInfo.cache
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.RazorAssemblyInfo.cs
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.AssemblyInfoInputs.cache
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.AssemblyInfo.cs
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.RazorTargetAssemblyInfo.cache
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.dll
+C:\Users\a\Documents\MehulDocuments\2024\webapi\learndotnet\learndotnet\obj\Debug\netcoreapp2.2\learndotnet.pdb
