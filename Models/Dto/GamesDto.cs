@@ -11,5 +11,7 @@ namespace learndotnet.Models.Dto
         [MaxLength(30)]
         public string Name { get; set; }
 
+        public string Device { get; set; }
+
     }
 }

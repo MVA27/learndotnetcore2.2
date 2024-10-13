@@ -12,5 +12,7 @@ namespace learndotnet.Models
         public string Name { get; set; }
 
         public string Device { get; set; }
+
+        public string HashKey { get; set; }
     }
 }

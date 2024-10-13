@@ -45,3 +45,9 @@ mysql> SHOW TABLES;
 | gametable             |
 +-----------------------+
 2 rows in set (0.00 sec)
+
+
+why use Asynchronous Programming
+1. Non-Blocking Operations
+   Efficiency: Asynchronous programming allows a thread to initiate an operation (like a database call) and then move on to other tasks instead of waiting for that operation to complete
+   While waiting for a response from a database, the server can process other incoming HTTP requests

@@ -3,6 +3,10 @@ using learndotnet.Models;
 using learndotnet.Models.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using learndotnet.Data;
+using System.Linq; // Required for LINQ extensions like ToList()
+
 
 namespace learndotnet.Controllers
 {
@@ -44,21 +48,24 @@ namespace learndotnet.Controllers
             Some Objects are already provided in the application (e.g., Logger for logging)
             We can access then through constructor
          */
-        //private readonly ILogger<GameController> _logger;
-        //public GameController(ILogger<GameController> logger) { // Application will send the Logger object in then constructor 
-        //    _logger = logger;
-            
-        //    // Just for testing
-        //    //logger.LogInformation("LogInformation"); // GREEN color shown in cmd
-        //    //logger.LogError("LogError");            // RED color shown in cmd
-        //    // use SeriLog (3rd party) to log into file
-        //}
+        private readonly ILogger<GameController> _logger;
+        private readonly ApplicationDbContext _db;
+
+        public GameController(ILogger<GameController> logger, ApplicationDbContext db) { // Application will send the Logger object in then constructor 
+           _logger = logger;
+           _db = db;
+
+           //Just for testing
+           logger.LogInformation("LogInformation"); // GREEN color shown in cmd
+           logger.LogError("LogError");            // RED color shown in cmd
+           //use SeriLog (3rd party) to log into file
+        }
 
         // we can use "ActionResult" to wrap our response (from Mvc namespace)
         [HttpGet] // GET request of route /games handeled by this function
         public ActionResult<List<GamesDto>> GetGames()
         {
-            return Ok(gamesList); // Now we return data with status code as well (this is a method from ControllerBase)
+            return Ok(_db.GameTable.ToList()); // Now we return data with status code as well (this is a method from ControllerBase)
         }
 
         [HttpGet("{id}", Name="GetGame")]  // we can Name the routs so that they can be referenced in the code
@@ -66,7 +73,8 @@ namespace learndotnet.Controllers
         {
             if (id == 0) return BadRequest(); // 400
 
-            GamesDto game = gamesList.Find(element => element.Id == id);
+            //GamesDto game = gamesList.Find(element => element.Id == id);
+            var game = _db.GameTable.FirstOrDefault(element => element.Id == id);
             if (game == null) return NotFound(); //404
 
             return Ok(game); // 200
@@ -78,7 +86,15 @@ namespace learndotnet.Controllers
             // ModelState object
             // ModelState
 
-            gamesList.Add(response);
+            GameModel game = new GameModel { 
+                Id = response.Id, 
+                Name = response.Name, 
+                Device = response.Device,
+                HashKey = this.GetHashCode() + "" // Privae key generted on server 
+            };
+
+            _db.GameTable.Add(game);
+            _db.SaveChanges();
 
             // This will return the route of newely added item in the location attriute of response header
             return CreatedAtRoute("GetName", new { id = response.Id }, response); // 201
@@ -91,14 +107,17 @@ namespace learndotnet.Controllers
 
             if (id != response.Id) return BadRequest();
 
-            var game = gamesList.Find(element => element.Id == id);
+            GameModel game = new GameModel { 
+                Id = response.Id, 
+                Name = response.Name, 
+                Device = response.Device,
+                HashKey = this.GetHashCode() + "" // Privae key generted on server 
+            };
 
-            if (game == null) return NotFound();
-
-            game.Name = response.Name;
+            _db.GameTable.Update(game);
+            _db.SaveChanges();
 
             return NoContent(); 
-
         }
 
         // PATCH -> Partial update
@@ -111,10 +130,11 @@ namespace learndotnet.Controllers
         
             if (id == 0) return BadRequest();
 
-            var game = gamesList.Find(element => element.Id == id);
+            var game = _db.GameTable.FirstOrDefault(element => element.Id == id);
             if(game == null) return NotFound();
 
-            gamesList.Remove(game);
+            _db.GameTable.Remove(game);
+            _db.SaveChanges();
             return NoContent();
         }
 
